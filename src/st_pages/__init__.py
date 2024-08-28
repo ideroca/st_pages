@@ -202,5 +202,7 @@ def _get_pages_from_config(path: str = ".streamlit/pages.toml") -> list[Page] | 
             pages.append(Section(page["name"], page["icon"]))  # type: ignore
         else:
             pages.append(Page(**page))  # type: ignore
-
-    return pages
+    exp = st.expander(str(Section.name))
+    for page in pages:
+        exp.page_link(page)
+    return exp
